@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookWorm - My Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        /* Tonal Layers & Elevation */
+        .card-level-1 {
+            background-color: theme('colors.surface-container-lowest');
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+        }
+        .fab-level-2 {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+        }
+        .book-spine-glow {
+            box-shadow: inset 2px 0 4px -2px rgba(255,255,255,0.4);
+        }
+        /* Utility for hiding scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col font-body-md bg-background pb-24 md:pb-0 md:pl-80">
+<!-- Desktop Navigation Drawer (hidden on mobile) -->
+<aside class="hidden md:flex flex-col h-full py-4 bg-surface-container-low w-80 rounded-r-xl shadow-sm fixed left-0 top-0 z-40">
+<div class="px-6 py-4 mb-4">
+<h1 class="font-headline-lg text-headline-lg text-primary font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl">menu_book</span> BookWorm
+            </h1>
+</div>
+<div class="px-6 mb-2">
+<h2 class="font-title-md text-title-md text-primary">My Bookshelf</h2>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<!-- Library matches 'Recent' best for primary view, but JSON has 'Recent'. Using JSON exact items -->
+<li>
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-full mx-3 my-1 px-4 py-3 hover:bg-surface-variant transition-colors active:opacity-80" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md font-medium">Recent</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant mx-3 my-1 px-4 py-3 hover:bg-surface-variant transition-colors rounded-full active:opacity-80" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-body-md font-medium">Favorites</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant mx-3 my-1 px-4 py-3 hover:bg-surface-variant transition-colors rounded-full active:opacity-80" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-body-md font-medium">Collections</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 text-on-surface-variant mx-3 my-1 px-4 py-3 hover:bg-surface-variant transition-colors rounded-full active:opacity-80" href="#">
+<span class="material-symbols-outlined">delete</span>
+<span class="font-body-md font-medium">Trash</span>
+</a>
+</li>
+</ul>
+</nav>
+</aside>
+<!-- Mobile Top App Bar -->
+<header class="md:hidden flex justify-between items-center w-full px-container-padding h-16 bg-surface text-primary font-headline-lg-mobile text-headline-lg-mobile docked full-width top-0 z-30 sticky">
+<div class="flex items-center gap-3">
+<button class="hover:bg-surface-variant transition-colors active:scale-95 p-2 rounded-full -ml-2">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<span class="font-semibold">BookWorm</span>
+</div>
+<button class="hover:bg-surface-variant transition-colors active:scale-95 p-2 rounded-full -mr-2">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="flex-1 w-full max-w-5xl mx-auto px-container-padding py-8 space-y-shelf-gap">
+<!-- Header -->
+<header class="hidden md:flex justify-between items-center w-full mb-8">
+<h2 class="font-display-lg text-display-lg text-on-background">My Library</h2>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary w-64 text-sm font-body-md text-on-surface" placeholder="Search library..." type="text"/>
+</div>
+</header>
+<!-- Continue Reading Section (Hero) -->
+<section>
+<h3 class="font-title-md text-title-md text-on-surface mb-gutter">Continue Reading</h3>
+<div class="card-level-1 rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden group">
+<!-- Abstract Background Accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary-container rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+<div class="w-32 md:w-40 aspect-[2/3] shrink-0 rounded-lg overflow-hidden book-spine-glow shadow-md">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a sleek, minimalist book cover in deep navy blue with subtle gold geometric foil stamping. The cover design is abstract, evoking modern architecture or perhaps a digital landscape, set against a pristine white studio background with soft, directional lighting highlighting the texture of the paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEZjkcNKSQXPnsaa6vzE7VoEcbyKhHbPvlKDBlhq3Huz5uXtsrvH-j70BMC-ESYYzuX_6UzPWfzdOwACoj8aiEABn5uWbMSNefhH7VQUaAVa5r5B3F8hnaXzTQb_X5uECCZxVUFm4LTFRaIJuBdi8dun31elqQvvgTQV3z_E7FOlJQcMvZhXoTfJhDCF0U8vCljky676D-AGVnsNxBt6QP0RzuaQBXo71TUvbrXDX6rJH5fzVEgGkxwA"/>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm mb-3">
+<span class="material-symbols-outlined text-[14px]">local_library</span>
+                            42% Read
+                        </div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background leading-tight mb-1">The Architecture of Calm</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">by Elena Rostova</p>
+</div>
+<div class="w-full max-w-md">
+<div class="flex justify-between text-xs text-on-surface-variant mb-2 font-medium">
+<span>Chapter 4: The Void</span>
+<span>12 hrs left</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+<button class="mt-4 px-6 py-2.5 bg-primary text-on-primary rounded-full font-body-md font-medium hover:bg-surface-tint transition-colors active:scale-95 flex items-center gap-2">
+                        Continue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- All Books Grid -->
+<section>
+<div class="flex justify-between items-baseline mb-gutter">
+<h3 class="font-title-md text-title-md text-on-surface">All Books</h3>
+<button class="text-primary text-sm font-medium hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-gutter gap-y-6">
+<!-- Book Card 1 -->
+<article class="group cursor-pointer flex flex-col">
+<div class="aspect-[2/3] w-full rounded-lg overflow-hidden book-spine-glow card-level-1 mb-3 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist book cover featuring a stark white background with a single, elegant brush stroke in charcoal grey. The typography is modern serif, very small and understated. Soft, ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTjg-cD00sQq4gXEVO1P-ZYEz4poFEAW7JlDR70jQqHlnHx3IS2o-UP9zssKMbOscPnt1i6MlEelcEe3l7eXYC-UAycB01XLrQogXdvvReCaW9nbKnMYaoTsbdS0nDHx8kFKo8USGK6JzRAHlvm-PttvMADqjRjDJqUKqr1O1cAikoF2ZRBtjtOLHLUjWPZZMVBvorHh_jv9mIK-petEIndRahLZl3cVKaSDYLbRti-I7sn1frh8QF_A"/>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-primary" style="width: 15%;"></div>
+</div>
+</div>
+<h5 class="font-body-md text-body-md text-on-background font-medium truncate">Minimalist Thought</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">J. Doe</p>
+</article>
+<!-- Book Card 2 -->
+<article class="group cursor-pointer flex flex-col">
+<div class="aspect-[2/3] w-full rounded-lg overflow-hidden book-spine-glow card-level-1 mb-3 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A digital book cover displaying a serene, muted sage green landscape, perhaps rolling hills fading into mist. The aesthetic is calm, quiet, and reflective. The title is in a thin, elegant sans-serif font." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4wy4SMJNM6J8BR7FSao9k1jQWge5ScolhkBsyni-I3grPjnxmUAU44HcXoT9HYDeGOa5axH8oNnGLYe3xyA_PDJnISHhYWuE_u-C4CpNpTjKtOFrqpnrk2b0BrNUZMKMNM7l9nH2ZNg_o5KArjetdTNKQVPpVafLee9ik4GDVXNgpwg4KEb72MLtb0XMx03RJKoNa2ZuoOEdhswYd3w9Zw99VgK7vH-J5WTR_RJTLcGBhvmJHn9SHIw"/>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-primary" style="width: 88%;"></div>
+</div>
+</div>
+<h5 class="font-body-md text-body-md text-on-background font-medium truncate">Quiet Valleys</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">A. Smith</p>
+</article>
+<!-- Book Card 3 -->
+<article class="group cursor-pointer flex flex-col">
+<div class="aspect-[2/3] w-full rounded-lg overflow-hidden book-spine-glow card-level-1 mb-3 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A bold, abstract geometric book cover using a color palette of deep terracotta red and off-white. The shapes intersect to create a sense of depth and structure. High contrast, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJE6-Q0bWf1T2Gx3fUWSp7GqLQISlqjEE2Ec8qm11Xu4-4eYgvdNLJRBbsaXTC1kSG6CiBpgZsmBjglGGlgMtOETYSwBvHXTQ7qS0lBqH1cKFVPh5AzZv6uhz_tJ5YKWsidmvL1J2zldUncel9_dObPxudcjFaAzNiuX2tD9FfPBalpjnyXbGO0KxDOYPQuyLAvxET260pKA5D5j6cJiY-DNE3T1CsOD4AGnoyFNqDNjOiQXDm6XEeEA"/>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-primary" style="width: 0%;"></div>
+</div>
+</div>
+<h5 class="font-body-md text-body-md text-on-background font-medium truncate">Structural Integrity</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">B. Wright</p>
+</article>
+<!-- Book Card 4 -->
+<article class="group cursor-pointer flex flex-col">
+<div class="aspect-[2/3] w-full rounded-lg overflow-hidden book-spine-glow card-level-1 mb-3 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A completely typographic book cover on a dark charcoal background. The title is written in a large, sweeping, elegant serif font in off-white, dominating the space. Corporate modern yet literary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa-yzxwycHXHyARw2Z_s6SqXA7x7230frQOnILrwpbrDvBb34-zpIwBVZ5bcgeonX3wabRYLuDPQw1zQfNXyDv2R4gja-gSFp4e74NCdTfUbon_g8FYsv-f_f6vMjiY--3Ini5Q23tXZXIhbErOYWYvyrVQHADaCQs6g8Dy8nj5OKQbyZQ7HzHQ4Gixr0iAJy6pBk2yLvK6cD8ZTUtu2KA50wkfhLejcHpCe8uJIZSydIuxqDjFON6Hw"/>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-primary" style="width: 100%;"></div>
+</div>
+</div>
+<h5 class="font-body-md text-body-md text-on-background font-medium truncate">The Void Reader</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">C. Nole</p>
+</article>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 md:bottom-8 right-6 w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center fab-level-2 hover:bg-surface-tint active:scale-90 transition-all z-40 group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-4 pb-safe bg-surface z-50">
+<!-- Active Tab: Library -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">library_books</span>
+<span class="font-label-sm text-label-sm">Library</span>
+</a>
+<!-- Inactive Tab: Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high rounded-full transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+</body></html>

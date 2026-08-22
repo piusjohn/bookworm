@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Details - BookWorm</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen relative overflow-x-hidden">
+<!-- Ambient Background Blur (Book Detail Context) -->
+<div class="fixed inset-0 bg-surface/50 backdrop-blur-[4px] z-[-1] pointer-events-none"></div>
+<!-- Header / Back Button -->
+<header class="w-full px-container-padding py-4 flex items-center justify-start z-10 sticky top-0">
+<button aria-label="Go back" class="p-2 rounded-full hover:bg-surface-variant transition-colors flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center px-container-padding pb-32 max-w-2xl mx-auto w-full z-10 pt-4">
+<!-- Book Cover Glassmorphism Container -->
+<div class="relative w-full max-w-[280px] aspect-[2/3] mb-8 rounded-[16px] overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)] bg-white transform transition-transform hover:scale-[1.02] duration-300">
+<!-- Subtle Inner Glow for Spine Effect -->
+<div class="absolute inset-y-0 left-0 w-[4px] bg-gradient-to-r from-black/10 to-transparent z-10 pointer-events-none"></div>
+<img alt="Book Cover" class="w-full h-full object-cover relative z-0" data-alt="A beautifully designed minimalist book cover titled 'The Architecture of Calm'. The cover features abstract geometric shapes in soothing sage greens, off-whites, and deep forest green tones, creating a tranquil and modern aesthetic. The typography is elegant serif. The lighting is soft and studio-like, highlighting the subtle texture of the paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdmMQ-rQZNWhae8Py7qBOI1QTbgqCVc-noPRtmCpfkF12ULl--yDU45jcEcSbNrVrBol6z6F5MBz1ajFoGYTpyQdVk7ryAQQG4qjQha7MLJXr9MnY8ibkP2R0kcs24PLn2QlKzWFgoDtm8M_jpLBocR7nlIK_nTy-OIw-RXTqRw4IrG1KMkqv4JINGLiEoT80zrQHDzl788fH91vMbMDAmHOO2eXptyfDSkGjgKtGv9eYM_MLwvJYBTA"/>
+</div>
+<!-- Metadata Cluster -->
+<div class="text-center w-full mb-10 flex flex-col items-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2 md:font-headline-lg md:text-headline-lg">The Architecture of Calm</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">By Elara Vance</p>
+<div class="flex items-center justify-center space-x-4">
+<!-- Progress Chip -->
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm inline-flex items-center">
+                    42% Read
+                </div>
+<span class="text-surface-dim">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">342 Pages</span>
+</div>
+</div>
+<!-- Action Area -->
+<div class="w-full flex flex-col items-center space-y-4 mb-12">
+<button class="w-full md:w-auto min-w-[240px] bg-primary text-on-primary py-4 px-8 rounded-full font-title-md text-title-md hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Continue Reading</span>
+</button>
+<button class="text-secondary font-label-sm text-label-sm hover:text-primary transition-colors py-2 px-4 rounded-full hover:bg-surface-variant/50">
+                Start Over
+            </button>
+</div>
+<!-- Reading Mode Selector Bento -->
+<div class="w-full max-w-sm bg-surface-container-low rounded-2xl p-6 shadow-sm border border-outline-variant/20">
+<h2 class="font-title-md text-title-md text-primary mb-4 text-center">Reading Mode</h2>
+<div class="grid grid-cols-3 gap-3">
+<!-- Option 1: Original -->
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface hover:bg-surface-variant transition-colors border border-transparent hover:border-outline-variant/30 group">
+<span class="material-symbols-outlined mb-2 text-on-surface-variant group-hover:text-primary transition-colors" data-icon="article">article</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">Original</span>
+</button>
+<!-- Option 2: Comfortable (Active) -->
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-secondary-container border border-primary/20 shadow-sm relative overflow-hidden">
+<!-- Active Indicator -->
+<div class="absolute top-1 right-1 w-2 h-2 rounded-full bg-primary"></div>
+<span class="material-symbols-outlined mb-2 text-on-secondary-container" data-icon="visibility" data-weight="fill">visibility</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container font-semibold">Comfort</span>
+</button>
+<!-- Option 3: Bionic -->
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface hover:bg-surface-variant transition-colors border border-transparent hover:border-outline-variant/30 group">
+<span class="material-symbols-outlined mb-2 text-on-surface-variant group-hover:text-primary transition-colors" data-icon="bolt">bolt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">Bionic</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Suppress Navigation Shells due to transaction/detail focus -->
+<!-- Bottom Nav intentionally omitted for focus -->
+</body></html>

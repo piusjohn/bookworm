@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookWorm - Comfortable Reading Mode</title>
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src='https://cdn.tailwindcss.com?plugins=forms,container-queries'></script>
+
+    <!-- Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["20px", { "lineHeight": "36px", "fontWeight": "400" }], /* Increased for reading comfort */
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles for the reading experience */
+        body {
+            /* Extremely subtle paper-like texture for comfort */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            background-attachment: fixed;
+        }
+
+        /* Hide scrollbar for a cleaner reading experience */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        
+        .reading-content p {
+            margin-bottom: 1.5em;
+            text-indent: 1.5em;
+        }
+        
+        .reading-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        /* Interactive overlay transitions */
+        #toolbar-overlay {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .toolbar-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+        }
+        
+        .toolbar-bottom-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen selection:bg-secondary-container selection:text-on-secondary-container antialiased flex flex-col relative" onclick="toggleToolbars(event)">
+
+    <!-- Top Reading Toolbar (Hidden by default, triggered on tap) -->
+    <header id="top-toolbar" class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out bg-surface/90 backdrop-blur-sm border-b border-surface-variant toolbar-hidden">
+        <div class="max-w-3xl mx-auto flex justify-between items-center px-container-padding h-16">
+            <button class="text-on-surface-variant hover:text-primary transition-colors p-2 -ml-2 rounded-full hover:bg-surface-variant active:scale-95 flex items-center justify-center">
+                <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+            </button>
+            
+            <h1 class="font-title-md text-title-md text-on-surface truncate px-4">
+                The Great Gatsby
+            </h1>
+            
+            <button class="text-on-surface-variant hover:text-primary transition-colors p-2 -mr-2 rounded-full hover:bg-surface-variant active:scale-95 flex items-center justify-center">
+                <span class="material-symbols-outlined" data-icon="bookmark_border">bookmark_border</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Reading Canvas -->
+    <main class="flex-grow w-full max-w-2xl mx-auto px-6 sm:px-12 md:px-16 pt-24 pb-32">
+        <article class="reading-content font-body-lg text-body-lg text-on-surface w-full max-w-prose mx-auto">
+            
+            <!-- Chapter Title -->
+            <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary text-center mb-12 mt-8">Chapter 1</h2>
+
+            <!-- Text Content -->
+            <p>In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.</p>
+            
+            <p>"Whenever you feel like criticizing any one," he told me, "just remember that all the people in this world haven't had the advantages that you've had."</p>
+            
+            <p>He didn't say any more, but we've always been unusually communicative in a reserved way, and I understood that he meant a great deal more than that. In consequence, I'm inclined to reserve all judgments, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran bores. The abnormal mind is quick to detect and attach itself to this quality when it appears in a normal person, and so it came about that in college I was unjustly accused of being a politician, because I was privy to the secret griefs of wild, unknown men. Most of the confidences were unsought—frequently I

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookWorm - Bionic Focus Reading</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .bionic-text {
+            font-family: "Source Serif 4", serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #1a1c19;
+            text-align: justify;
+        }
+        .bionic-text b {
+            font-weight: 700;
+        }
+        .fade-bottom {
+            background: linear-gradient(to bottom, rgba(250, 250, 244, 0) 0%, rgba(250, 250, 244, 1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface h-screen flex flex-col antialiased overflow-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-container-padding h-16 bg-surface z-10 shrink-0">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-semibold text-primary">BookWorm</span>
+<div class="flex items-center gap-1 mt-1 bg-secondary-container/30 px-3 py-1 rounded-full border border-secondary-container">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<span class="font-label-sm text-label-sm text-surface-tint">Bionic Focus Active</span>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined text-2xl">bookmark_border</span>
+</button>
+</header>
+<!-- Reading Canvas -->
+<main class="flex-1 overflow-y-auto px-container-padding py-8 md:px-32 lg:px-64 scroll-smooth">
+<div class="max-w-2xl mx-auto pb-32">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-8 text-center"><b>Cha</b>pter <b>O</b>ne</h1>
+<p class="bionic-text mb-6">
+<b>It</b> <b>is</b> <b>a</b> <b>tru</b>th <b>univer</b>sally <b>acknowl</b>edged, <b>th</b>at <b>a</b> <b>sin</b>gle <b>m</b>an <b>i</b>n <b>possess</b>ion <b>o</b>f <b>a</b> <b>go</b>od <b>fort</b>une, <b>mu</b>st <b>b</b>e <b>i</b>n <b>wa</b>nt <b>o</b>f <b>a</b> <b>wi</b>fe.
+            </p>
+<p class="bionic-text mb-6">
+<b>Howe</b>ver <b>lit</b>tle <b>kno</b>wn <b>th</b>e <b>feel</b>ings <b>o</b>r <b>vie</b>ws <b>o</b>f <b>su</b>ch <b>a</b> <b>m</b>an <b>m</b>ay <b>b</b>e <b>o</b>n <b>hi</b>s <b>fir</b>st <b>enter</b>ing <b>a</b> <b>neighbour</b>hood, <b>th</b>is <b>tru</b>th <b>i</b>s <b>s</b>o <b>we</b>ll <b>fix</b>ed <b>i</b>n <b>th</b>e <b>min</b>ds <b>o</b>f <b>th</b>e <b>surround</b>ing <b>famil</b>ies, <b>th</b>at <b>h</b>e <b>i</b>s <b>consid</b>ered <b>th</b>e <b>right</b>ful <b>proper</b>ty <b>o</b>f <b>so</b>me <b>o</b>ne <b>o</b>r <b>oth</b>er <b>o</b>f <b>the</b>ir <b>daugh</b>ters.
+            </p>
+<p class="bionic-text mb-6">
+                "<b>M</b>y <b>de</b>ar <b>M</b>r. <b>Benn</b>et," <b>sa</b>id <b>hi</b>s <b>la</b>dy <b>t</b>o <b>hi</b>m <b>o</b>ne <b>da</b>y, "<b>ha</b>ve <b>yo</b>u <b>hea</b>rd <b>th</b>at <b>Nether</b>field <b>Pa</b>rk <b>i</b>s <b>l</b>et <b>at</b> <b>la</b>st?"
+            </p>
+<p class="bionic-text mb-6">
+<b>M</b>r. <b>Benn</b>et <b>repl</b>ied <b>th</b>at <b>h</b>e <b>h</b>ad <b>n</b>ot.
+            </p>
+<p class="bionic-text mb-6">
+                "<b>B</b>ut <b>i</b>t <b>i</b>s," <b>retur</b>ned <b>sh</b>e; "<b>f</b>or <b>Mr</b>s. <b>Lo</b>ng <b>h</b>as <b>ju</b>st <b>be</b>en <b>he</b>re, <b>a</b>nd <b>sh</b>e <b>to</b>ld <b>m</b>e <b>a</b>ll <b>abo</b>ut <b>i</b>t."
+            </p>
+<p class="bionic-text mb-6">
+<b>M</b>r. <b>Benn</b>et <b>ma</b>de <b>n</b>o <b>answ</b>er.
+            </p>
+<p class="bionic-text mb-6">
+                "<b>D</b>o <b>n</b>ot <b>yo</b>u <b>wa</b>nt <b>t</b>o <b>kn</b>ow <b>wh</b>o <b>h</b>as <b>tak</b>en <b>i</b>t?" <b>cri</b>ed <b>hi</b>s <b>wi</b>fe <b>impatie</b>ntly.
+            </p>
+<p class="bionic-text mb-6">
+                "<b>Yo</b>u <b>wa</b>nt <b>t</b>o <b>te</b>ll <b>m</b>e, <b>a</b>nd <b>I</b> <b>ha</b>ve <b>n</b>o <b>object</b>ion <b>t</b>o <b>hear</b>ing <b>i</b>t."
+            </p>
+<p class="bionic-text mb-6">
+<b>Th</b>is <b>w</b>as <b>invitat</b>ion <b>enou</b>gh.
+            </p>
+<p class="bionic-text mb-6">
+                "<b>Wh</b>y, <b>m</b>y <b>de</b>ar, <b>yo</b>u <b>mu</b>st <b>kn</b>ow, <b>Mr</b>s. <b>Lo</b>ng <b>sa</b>ys <b>th</b>at <b>Nether</b>field <b>i</b>s <b>tak</b>en <b>b</b>y <b>a</b> <b>you</b>ng <b>m</b>an <b>o</b>f <b>lar</b>ge <b>fort</b>une <b>fr</b>om <b>th</b>e <b>nor</b>th <b>o</b>f <b>Engla</b>nd; <b>th</b>at <b>h</b>e <b>ca</b>me <b>do</b>wn <b>o</b>n <b>Mond</b>ay <b>i</b>n <b>a</b> <b>chai</b>se <b>a</b>nd <b>fo</b>ur <b>t</b>o <b>s</b>ee <b>th</b>e <b>pla</b>ce, <b>a</b>nd <b>w</b>as <b>s</b>o <b>mu</b>ch <b>deligh</b>ted <b>wi</b>th <b>i</b>t, <b>th</b>at <b>h</b>e <b>agre</b>ed <b>wi</b>th <b>M</b>r. <b>Morr</b>is <b>immedia</b>tely; <b>th</b>at <b>h</b>e <b>i</b>s <b>t</b>o <b>ta</b>ke <b>possess</b>ion <b>befo</b>re <b>Michael</b>mas, <b>a</b>nd <b>so</b>me <b>o</b>f <b>hi</b>s <b>servan</b>ts <b>a</b>re <b>t</b>o <b>b</b>e <b>i</b>n <b>th</b>e <b>hou</b>se <b>b</b>y <b>th</b>e <b>e</b>nd <b>o</b>f <b>ne</b>xt <b>we</b>ek."
+            </p>
+</div>
+</main>
+<!-- Reading Progress & Gradient Overlay -->
+<div class="fixed bottom-0 left-0 w-full h-32 fade-bottom pointer-events-none z-10"></div>
+<div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex items-center justify-center">
+<div class="bg-surface-container-high px-4 py-2 rounded-full shadow-sm flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Page 1 of 342</span>
+<div class="w-24 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-surface-tint w-1/12 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (Settings) -->
+<button class="fixed bottom-8 right-container-padding w-14 h-14 bg-primary text-on-primary rounded-full shadow-[0_8px_16px_rgba(26,28,25,0.08)] flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95 z-30">
+<span class="material-symbols-outlined text-2xl">tune</span>
+</button>
+</body></html>

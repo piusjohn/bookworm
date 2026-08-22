@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="h-full antialiased dark:bg-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookWorm - PDF Reader</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "title-md": ["18px", { lineHeight: "24px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .toolbar-transition {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toolbar-hidden-top {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .toolbar-hidden-bottom {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        /* PDF Page styles to simulate a document */
+        .pdf-page {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            aspect-ratio: 1 / 1.414; /* A4 proportion roughly */
+            background-color: #ffffff;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full bg-surface-container-low text-on-surface overflow-hidden flex flex-col font-body-md select-none">
+<!-- Top Toolbar (Auto-hiding) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm dark:shadow-none toolbar-transition h-16 flex justify-between items-center px-4 md:px-container-padding" id="top-toolbar">
+<div class="flex items-center gap-4">
+<button aria-label="Back" class="p-2 rounded-full hover:bg-surface-variant transition-colors text-primary active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-title-md text-title-md text-primary truncate max-w-[200px] md:max-w-md">The Great Gatsby.pdf</h1>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Search" class="p-2 rounded-full hover:bg-surface-variant transition-colors text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="More options" class="p-2 rounded-full hover:bg-surface-variant transition-colors text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area (PDF Rendering Simulation) -->
+<main class="flex-1 overflow-y-auto overflow-x-hidden hide-scrollbar bg-surface-container pt-20 pb-24 px-4 md:px-12 flex flex-col gap-8 cursor-pointer items-center" id="pdf-container">
+<!-- Page 1 -->
+<div class="pdf-page w-full md:w-3/4 lg:w-[800px] relative">
+<img class="w-full h-full object-cover rounded-sm pointer-events-none" data-alt="A clean, minimalist rendering of a PDF page showing the first chapter of The Great Gatsby. The layout is elegant, with standard margins, a classic serif font for the body text, and a slightly larger heading indicating 'Chapter 1'. The page feels crisp and professional, resting on a subtle light grey background, emphasizing a high-utility, focus-driven reading experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeAiFBvtQc9lK3cpZg0eOZWqRfQsQAYuw2wXDShsJ2fBmIn4dwm0MR6NYzTegudOPhvOzMeVUoo-t5p9RwibGo3Bv9bPQ280SVx1u-Hnhw5W3v2MLbcIiAt9vtBlM5Hb6pwtDAJo0MhZUIo8vOEorHmR88YBX9i7aJXinUlRd-OiqF48ukGAvUFKrvRkLLjsc1Oz9SigkSQd65Wa5bUFcWLlMxNGRhK2ZlkhcxpvDvOwO5L1Aikj4DaA"/>
+</div>
+<!-- Page 2 -->
+<div class="pdf-page w-full md:w-3/4 lg:w-[800px] relative">
+<img class="w-full h-full object-cover rounded-sm pointer-events-none" data-alt="The second page of a PDF document, displaying continuous text in a double-column layout typical of some academic or classic book digital scans. The text is dense but legible, with a classic serif typography. The page background is stark white, contrasting slightly with the soft grey app background, maintaining a clear separation between the document and the reading interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmk5fqM0MF2ECgqhTS_sr2JaIN8aulMPt1HNAnPyRDDXu9cQa_7u6OQ-2_rCbWOv4f_WMn9dzD-Un2OmoOAbFkhw2ygWvxg2JKxsoC5WqTunTDa-cibI3TZ2AZG7gsS6vMzCJg1zylcvy-pZzle3u_DRLhjDnJlGZLQY_aEGgxhZsP_Pqn0jjOv0EHSfPlxFVcKKdsNAuiPFdW8mUHsAahVXHeJaoG7-DTRLZY528s_Hos2Rko9NfZ2Q"/>
+</div>
+</main>
+<!-- Bottom Toolbar (Auto-hiding) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_-2px_4px_rgba(0,0,0,0.05)] dark:shadow-none toolbar-transition h-20 px-4 md:px-container-padding flex flex-col justify-center pb-safe" id="bottom-toolbar">
+<div class="w-full max-w-3xl mx-auto flex flex-col gap-2">
+<div class="flex justify-between items-center w-full">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Page 42</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">342 Pages</span>
+</div>
+<div class="w-full relative flex items-center h-8">
+<!-- Track -->
+<div class="absolute w-full h-1 bg-surface-variant rounded-full"></div>
+<!-- Progress -->
+<div class="absolute h-1 bg-primary rounded-full" style="width: 12.28%;"></div>
+<!-- Thumb -->
+<div class="absolute h-4 w-4 bg-primary rounded-full shadow-md transform -translate-y-1/2 top-1/2 cursor-grab active:cursor-grabbing hover:scale-110 transition-transform" style="left: 12.28%; margin-left: -8px;"></div>
+</div>
+</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const topToolbar = document.getElementById('top-toolbar');
+            const bottomToolbar = document.getElementById('bottom-toolbar');
+            const pdfContainer = document.getElementById('pdf-container');
+            
+            let isToolbarVisible = true;
+            let lastScrollTop = 0;
+            let scrollTimer = null;
+
+            // Toggle toolbars on tap anywhere in the main container
+            pdfContainer.addEventListener('click', (e) => {
+                // Don't toggle if clicking near the bottom (slider area) to avoid conflict
+                if (e.clientY > window.innerHeight - 100) return;
+
+                isToolbarVisible = !isToolbarVisible;
+                updateToolbarVisibility();
+            });
+
+            // Auto-hide on scroll
+            pdfContainer.addEventListener('scroll', () => {
+                let st = pdfContainer.scrollTop;
+                
+                if (st > lastScrollTop && st > 50) {
+                    // Scrolling down
+                    if (isToolbarVisible) {
+                        isToolbarVisible = false;
+                        updateToolbarVisibility();
+                    }
+                }
+                lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+
+                // Clear previous timeout and set a new one to show toolbars when scrolling stops
+                if(scrollTimer !== null) {
+                    clearTimeout(scrollTimer);
+                }
+                
+                // Optional: Auto-show when scrolling stops for a while. 
+                // Disabled here to keep focus mode until tapped again, 
+                // which is more common in PDF readers.
+                /*
+                scrollTimer = setTimeout(function() {
+                    if (!isToolbarVisible) {
+                        isToolbarVisible = true;
+                        updateToolbarVisibility();
+                    }
+                }, 1500);
+                */
+            }, false);
+
+            function updateToolbarVisibility() {
+                if (isToolbarVisible) {
+                    topToolbar.classList.remove('toolbar-hidden-top');
+                    bottomToolbar.classList.remove('toolbar-hidden-bottom');
+                } else {
+                    topToolbar.classList.add('toolbar-hidden-top');
+                    bottomToolbar.classList.add('toolbar-hidden-bottom');
+                }
+            }
+        });
+    </script>
+</body></html>

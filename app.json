@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Bookworm",
+    "slug": "bookworm",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": { "backgroundColor": "#FAF8F3" },
+    "assetBundlePatterns": ["**/*"]
+  }
+}

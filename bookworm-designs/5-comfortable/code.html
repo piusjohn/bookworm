@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookWorm - Reading Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom range slider styling for Material look */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #012d1d; /* primary color */
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #d3e5cb; /* secondary-container */
+            border-radius: 2px;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen relative overflow-hidden">
+<!-- Mock Background Reading Content -->
+<div class="px-container-padding py-16 opacity-30 select-none filter blur-[2px] transition-all duration-300">
+<h1 class="font-display-lg text-display-lg text-primary mb-8">Chapter 1</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
+            The studio was filled with the rich odour of roses, and when the light summer wind stirred amidst the trees of the garden, there came through the open door the heavy scent of the lilac, or the more delicate perfume of the pink-flowering thorn.
+        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
+            From the corner of the divan of Persian saddle-bags on which he was lying, smoking, as was his custom, innumerable cigarettes, Lord Henry Wotton could just catch the gleam of the honey-sweet and honey-coloured blossoms of a laburnum...
+        </p>
+</div>
+<!-- Backdrop Overlay -->
+<div class="absolute inset-0 bg-inverse-surface/20 backdrop-blur-sm z-40 transition-opacity duration-300" id="backdrop"></div>
+<!-- Bottom Sheet -->
+<div class="absolute bottom-0 left-0 w-full bg-surface-container-lowest rounded-t-[24px] shadow-[0_-8px_24px_rgba(0,0,0,0.08)] z-50 transform transition-transform duration-300 ease-out flex flex-col max-h-[751px]" id="bottom-sheet">
+<!-- Handle -->
+<div class="w-full flex justify-center pt-4 pb-2 cursor-grab">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Sheet Content -->
+<div class="px-container-padding pb-safe overflow-y-auto">
+<!-- Header -->
+<div class="flex justify-between items-center mb-6 mt-2">
+<h2 class="font-title-md text-title-md text-primary">Reading Settings</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Section 1: Reading Mode -->
+<div class="mb-8">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-3 uppercase tracking-wider">Reading Mode</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full font-body-md text-sm border border-outline-variant text-on-surface hover:bg-surface-variant transition-colors">Original</button>
+<button class="px-4 py-2 rounded-full font-body-md text-sm bg-secondary-container text-on-secondary-container font-medium border border-transparent shadow-sm">Comfortable</button>
+<button class="px-4 py-2 rounded-full font-body-md text-sm border border-outline-variant text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="psychology">psychology</span>
+                        Bionic Focus
+                    </button>
+</div>
+</div>
+<!-- Section 2: Typography & Spacing Sliders -->
+<div class="mb-8 space-y-6">
+<!-- Font Size -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-md text-sm text-on-surface">Font Size</span>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-body-md text-xs">Aa</span>
+<span class="font-body-md text-lg">Aa</span>
+</div>
+</div>
+<input class="w-full" max="10" min="1" type="range" value="5"/>
+</div>
+<!-- Font Weight -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-md text-sm text-on-surface">Font Weight</span>
+</div>
+<input class="w-full" max="800" min="300" step="100" type="range" value="400"/>
+</div>
+<!-- Line Spacing -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-md text-sm text-on-surface">Line Spacing</span>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_line_spacing">format_line_spacing</span>
+</div>
+</div>
+<input class="w-full" max="3" min="1" step="0.5" type="range" value="1.5"/>
+</div>
+<!-- Bionic Strength (Conditional showing based on mode, but displayed for UI completeness) -->
+<div class="opacity-50">
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-md text-sm text-on-surface">Bionic Strength</span>
+<span class="font-label-sm text-[10px] bg-surface-variant px-2 py-0.5 rounded text-on-surface-variant">Requires Mode</span>
+</div>
+<input class="w-full" disabled="" max="5" min="1" type="range" value="3"/>
+</div>
+</div>
+<!-- Section 3: Theme Selector -->
+<div class="mb-8">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-3 uppercase tracking-wider">Theme</h3>
+<div class="flex gap-4">
+<!-- Light (Active) -->
+<button class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full bg-[#fafaf4] border-2 border-primary shadow-sm flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full ring-2 ring-primary ring-offset-2"></div>
+<span class="material-symbols-outlined text-on-background" data-icon="light_mode">light_mode</span>
+</div>
+<span class="font-body-md text-xs text-primary font-medium">Light</span>
+</button>
+<!-- Sepia -->
+<button class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full bg-[#f4ebd8] border border-outline-variant shadow-sm flex items-center justify-center hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[#5c4d3c]" data-icon="import_contacts">import_contacts</span>
+</div>
+<span class="font-body-md text-xs text-on-surface-variant">Sepia</span>
+</button>
+<!-- Dark -->
+<button class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full bg-[#1a1c19] border border-outline-variant shadow-sm flex items-center justify-center hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-white" data-icon="dark_mode">dark_mode</span>
+</div>
+<span class="font-body-md text-xs text-on-surface-variant">Dark</span>
+</button>
+</div>
+</div>
+<!-- Reset -->
+<div class="mt-4 mb-8 pt-4 border-t border-surface-variant text-center">
+<button class="font-body-md text-sm text-primary font-medium hover:underline px-4 py-2 rounded-lg hover:bg-surface-variant/50 transition-colors">
+                    Reset to Default
+                </button>
+</div>
+</div>
+</div>
+<!-- Quick mock interaction script for demonstration -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sheet = document.getElementById('bottom-sheet');
+            const backdrop = document.getElementById('backdrop');
+            
+            // Simple entry animation
+            sheet.style.transform = 'translateY(100%)';
+            backdrop.style.opacity = '0';
+            
+            setTimeout(() => {
+                sheet.style.transform = 'translateY(0)';
+                backdrop.style.opacity = '1';
+            }, 100);
+
+            // Close mock
+            backdrop.addEventListener('click', () => {
+                sheet.style.transform = 'translateY(100%)';
+                backdrop.style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.blur-\\[2px\\]').classList.remove('blur-[2px]', 'opacity-30');
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

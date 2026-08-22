@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookWorm - Reading Progress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeee9",
+                        "tertiary-container": "#5a302f",
+                        "on-secondary-fixed": "#111f0f",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "inverse-primary": "#a5d0b9",
+                        "primary-fixed": "#c1ecd4",
+                        "on-background": "#1a1c19",
+                        "on-secondary-container": "#576752",
+                        "outline-variant": "#c1c8c2",
+                        "surface-variant": "#e3e3de",
+                        "tertiary": "#401b1b",
+                        "surface-container-low": "#f4f4ee",
+                        "surface-tint": "#3f6653",
+                        "on-primary-fixed": "#002114",
+                        "surface": "#fafaf4",
+                        "secondary-container": "#d3e5cb",
+                        "background": "#fafaf4",
+                        "on-surface-variant": "#414844",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "secondary": "#53634e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3b4b38",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#d6e8ce",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#fafaf4",
+                        "on-tertiary-fixed": "#331111",
+                        "on-tertiary-container": "#d29895",
+                        "primary-container": "#1b4332",
+                        "inverse-on-surface": "#f1f1ec",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadad5",
+                        "secondary-fixed-dim": "#baccb3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c19",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "surface-container-high": "#e8e8e3",
+                        "outline": "#717973",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-padding": "24px",
+                        "shelf-gap": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Inter"],
+                        "body-lg": ["\"Source Serif 4\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .bookshelf-shadow {
+            box-shadow: 0 4px 12px rgba(26, 28, 25, 0.04), 0 2px 4px rgba(26, 28, 25, 0.02);
+        }
+        .inner-spine-glow {
+            box-shadow: inset 2px 0 6px -2px rgba(255,255,255,0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col items-center">
+<!-- Content Canvas -->
+<main class="w-full max-w-md mx-auto min-h-screen flex flex-col relative px-container-padding py-8">
+<!-- Top Action Bar (Transactional) -->
+<div class="w-full flex items-center justify-between mb-8">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-variant transition-colors text-on-surface active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-title-md text-title-md text-on-surface">Reading Progress</h1>
+<div class="w-10 h-10"></div> <!-- Spacer for balance -->
+</div>
+<!-- Book Cover Container -->
+<div class="flex-grow flex flex-col items-center justify-start space-y-8">
+<div class="relative w-48 h-72 rounded-xl overflow-hidden bookshelf-shadow inner-spine-glow transform transition-transform hover:scale-105 duration-300">
+<img class="w-full h-full object-cover" data-alt="A beautifully designed book cover for a non-fiction book about nature and mindfulness. The cover features an abstract, minimalist illustration of a deep forest canopy viewed from below, rendered in shades of sage green, deep forest green, and soft cream. The lighting is calm and dappled, suggesting early morning sunlight filtering through leaves. The typography is modern serif, elegantly spaced, conveying a sense of calm intelligence and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxrIuwGsG_Gyyyxhnp_UUw2TaXIjqniOpM2XU1i4NQjzS6S4aNvsIgYN19jo-cBgmZN_9UNjJnfNxe1gFEaOjE6Kp4vD4NzK2vrnvD9xttaIhHOBl7hqDvZIIoqHcHGZkDxJARKLyY_Ucou1FIlaiCh10gawb2RCjffuqdeS2bzZ6GltdPy9u2K6SEmw1qTBrNETt4viSVcfvyGSjVQxhvEFSJ3U2xTayQLvtoGPZaHb2QY9j5gEusg"/>
+</div>
+<!-- Core Progress -->
+<div class="w-full flex flex-col items-center space-y-4">
+<h2 class="font-display-lg text-display-lg text-primary text-center">42%</h2>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000 ease-out" style="width: 42%;"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Completed</p>
+</div>
+<!-- Stats Grid -->
+<div class="w-full grid grid-cols-1 gap-4 pt-4">
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl p-4 bookshelf-shadow">
+<div class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_stories</span>
+<span class="font-body-md">Current Page</span>
+</div>
+<span class="font-title-md text-title-md text-primary">144</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl p-4 bookshelf-shadow">
+<div class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<span class="font-body-md">Pages Remaining</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">198</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl p-4 bookshelf-shadow">
+<div class="flex items-center space-x-3 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">schedule</span>
+<span class="font-body-md">Est. Time</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">3h 15m</span>
+</div>
+</div>
+<div class="flex-grow"></div>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-on-primary font-title-md text-title-md py-4 rounded-xl flex items-center justify-center space-x-2 hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md active:scale-[0.98] mt-8">
+<span>Continue Reading</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</main>
+</body></html>
